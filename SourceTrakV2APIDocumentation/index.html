@@ -8,7 +8,7 @@
 <h1>SourceTrak Admin API</h1>
 <p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
 <h2>Get Number</h2>
-<p>The default request is made via GET and is used to get a phone number to display on one's site. <code>https://st1.ifbyphone.com/st/</code></p>
+<p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
 <h3>Request Parameters</h3>
 <pre>
     <code>
@@ -20,5 +20,27 @@
     </code>
 </pre>
 <p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl></code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
+<h3>Example Request</h3>
+<pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page</code></pre>
+<h3>Example Response</h3>
+<pre>
+    <code>
+        {
+          "bid": "c3c15867-9c18-2877-d445-44727b5214f6",
+          "pid": "5202db84-25a2-6f71-c0e4-2852e03e8bf5",
+          "stn": "3129975796",
+          "ntr": "5555555555",
+          "rc": "",
+          "rid": "",
+          "se": 600,
+          "he": 10800,
+          "h": "30",
+          "a": 0,
+          "m": "8662571076",
+          "sgn": 1,
+          "integrations": []
+        }
+    </code>
+</pre>
 </body>
 </html>
