@@ -9,7 +9,7 @@
 <p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
 <h2>Get Number</h2>
 <p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
-<h3>Request Parameters</h3>
+<h3>GET Parameters</h3>
 <pre>
     <code>
         api=true
@@ -19,18 +19,18 @@
         dt=DOCUMENT_TITLE
     </code>
 </pre>
-<p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl></code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
+<p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl</code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
 <h3>Example Request</h3>
 <pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page</code></pre>
 <h3>Example Response</h3>
 <pre>
     <code>
         {
-          "bid": "c3c15867-9c18-2877-d445-44727b5214f6",
-          "pid": "5202db84-25a2-6f71-c0e4-2852e03e8bf5",
+          "bid": "d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d",
+          "pid": "95acfe77-8bd6-bf42-b6a0-3abe1fcd9156",
           "stn": "3129975796",
           "ntr": "5555555555",
-          "rc": "",
+          "rc": "phone",
           "rid": "",
           "se": 600,
           "he": 10800,
@@ -42,5 +42,10 @@
         }
     </code>
 </pre>
+<code>
+    <strong>bid</strong>: The <code>bid</code> is the end-user's Browser ID to be associated with any request from that user no matter the domain.<br />
+    <strong>woeijr</strong>: weriojwoierj
+</code>
+<p>The <code>bid</code> and <code>pid</code> are identifiers for the end-user. The <code>bid</code> is the end-user's Browser ID to be associated with any request from that user no matter the domain. The <code>pid</code> is the Property ID identifying the request as pertaining to this domain set browser ID combination. The <code>stn</code> is the SourceTrak number. The <code>ntr</code> is the replacement number. the <code>rc</code> is the replacement class. The <code></p>
 </body>
 </html>
