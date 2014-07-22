@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SourceTrak V2 API</title>
+    <title>SourceTrak Admin API</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -9,7 +9,7 @@
 <p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
 <h2>Get Number</h2>
 <p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
-<h3>GET Parameters</h3>
+<h4>GET Parameters</h4>
 <pre>
     <code>
         api=true
@@ -20,9 +20,9 @@
     </code>
 </pre>
 <p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl</code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
-<h3>Example Request</h3>
+<h4>Example Request</h4>
 <pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page</code></pre>
-<h3>Example Response</h3>
+<h4>Example Response</h4>
 <pre>
     <code>
         {
