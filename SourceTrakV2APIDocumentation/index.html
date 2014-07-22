@@ -5,8 +5,19 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<h3>SourceTrak API</h3>
-<p>blah blah<code>test</code> blah</p>
-<pre><code>aewtwetwa</code><pre>
+<h1>SourceTrak Admin API</h1>
+<p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
+<h2>Get Number</h2>
+<p>The default request is made via GET and is used to get a phone number to display on one's site. <code>https://st1.ifbyphone.com/st/</code></p>
+<h3>Request Parameters</h3>
+<pre>
+    <code>
+        api=true
+        _stk=SOURCETRAK_KEY
+        dr=DOCUMENT_REFERER
+        dl=DOCUMENT_LOCATION
+        dt=DOCUMENT_TITLE
+    </code>
+<pre>
 </body>
 </html>
