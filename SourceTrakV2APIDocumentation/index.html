@@ -13,7 +13,7 @@
 
 <h3>Get Number</h3>
 <p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
-<h4>GET Parameters</h4>
+<p>GET Parameters:</p>
 <pre>
     <code>
         api=true
@@ -24,9 +24,9 @@
     </code>
 </pre>
 <p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl</code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
-<h4>Example Request</h4>
+<p>Example Request:</p>
 <pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page</code></pre>
-<h4>Example Response</h4>
+<p>Example Response:</p>
 <pre>
     <code>
         {
@@ -66,7 +66,7 @@
 
 <h3>Check Number on Subsequent Request</h3>
 <p>Once an end-user has been identified as a return visitor a request should be made passing in the bid, pid, and stn to check if a different number should be displayed or if the previous number is still valid for that user. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
-<h4>GET Parameters</h4>
+<p>GET Parameters:</p>
 <pre>
     <code>
         api=true
@@ -80,9 +80,9 @@
     </code>
 </pre>
 <p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl</code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
-<h4>Example Request</h4>
+<p>Example Request:</p>
 <pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156&stn=3129975796</code></pre>
-<h4>Example Response</h4>
+<p>Example Response:</p>
 <pre>
     <code>
         {
@@ -122,7 +122,7 @@
 
 <h3>Log Page Visit</h3>
 <p>The log request is made via GET and is used to log an end-user's page request activity on one's web site. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
-<h4>GET Parameters</h4>
+<p>GET Parameters:</p>
 <pre>
     <code>
         api=true
@@ -134,11 +134,11 @@
         pid=PROPERTY_ID
     </code>
 </pre>
-<h4>Example request</h4>
+<p>Example request:</p>
 <pre>
 <code>https://st2.ifbyphone.com/st/log?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156</code>
 </pre>
-<h4>Example Response</h4>
+<p>Example Response:</p>
 <pre>
     <code>Status Code:200 OK</code>
 </pre>
@@ -148,7 +148,7 @@
 
 <h3>Log Heartbeat</h3>
 <p>The heartbeat request is made via GET and is used to log if the end-user still has a page open in the browser. The heartbeat requests are made to the same end-point as logging page visits with the param of _stb=1. These requests are used to rank an inbound calls accuracty to be tracked back to an end-user's history. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
-<h4>GET Parameters</h4>
+<p>GET Parameters:</p>
 <pre>
     <code>
         api=true
@@ -161,11 +161,11 @@
         pid=PROPERTY_ID
     </code>
 </pre>
-<h4>Example request</h4>
+<p>Example request:</p>
 <pre>
 <code>https://st2.ifbyphone.com/st/log?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&_stb=1&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156</code>
 </pre>
-<h4>Example Response</h4>
+<p>Example Response:</p>
 <pre>
     <code>Status Code:200 OK</code>
 </pre>
