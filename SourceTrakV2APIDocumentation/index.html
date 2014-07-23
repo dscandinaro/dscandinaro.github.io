@@ -5,9 +5,13 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<h1>SourceTrak Integration API</h1>
+
+<h3>SourceTrak Integration API</h3>
 <p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
-<h2>Get Number</h2>
+
+<hr />
+
+<h3>Get Number</h3>
 <p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
 <h4>GET Parameters</h4>
 <pre>
@@ -57,8 +61,66 @@
     <code>sgn</code>: Flag for if the SourceTrak number is a SourceGuard number<br />
     <code>integrations</code>: List of associated integrations<br />
 </p>
+
 <hr />
-<h2>Log Page Visit</h2>
+
+<h3>Check Number on Subsequent Request</h3>
+<p>Once an end-user has been identified as a return visitor a request should be made passing in the bid, pid, and stn to check if a different number should be displayed or if the previous number is still valid for that user. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
+<h4>GET Parameters</h4>
+<pre>
+    <code>
+        api=true
+        _stk=PUBLIC_KEY
+        dr=DOCUMENT_REFERER
+        dl=DOCUMENT_LOCATION
+        dt=DOCUMENT_TITLE
+        bid=BROWSER_ID
+        pid=PROPERTY_ID
+        stn=SOURCETRAK_NUMBER
+    </code>
+</pre>
+<p>The <code>api</code> parameter is always set to true to indicate this is an external API request. The <code>_stk</code> is used to authorize one's API request. The <code>dr</code> parameter is the document referer which is used to match against one's SourceTrak setup pertaining to what web site the user came from. The <code>dl</code> paramater is used to indicate the current domain and query string parameters. The <code>dt</code> parameter is used to set the title of the page view for reporting.</p>
+<h4>Example Request</h4>
+<pre><code>https://st1.ifbyphone.com/st/?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156&stn=3129975796</code></pre>
+<h4>Example Response</h4>
+<pre>
+    <code>
+        {
+            "bid": "aefdba1c-62c8-b7d2-faaa-ee6d2b913b03",
+            "pid": "3c3e7a0d-0d67-4029-b8e5-ed201fb502f0",
+            "stn": "3129975796",
+            "ntr": "5555555555",
+            "rc": "phone",
+            "rid": "",
+            "se": 600,
+            "he": 10800,
+            "h": "30",
+            "a": 0,
+            "m": "8662571076",
+            "sgn": 0,
+            "integrations": []
+        }
+    </code>
+</pre>
+<p>
+    <code>bid</code>: Browser ID to be associated with any request from that user's browser. This ID domain agnostic<br />
+    <code>pid</code>: Property ID identifying the request as pertaining to this domain set browser ID combination<br />
+    <code>stn</code>: SourceTrak number<br />
+    <code>ntr</code>: Number to replace<br />
+    <code>rc</code>: Replacement HTML Class<br />
+    <code>rid</code>: Replacement HTML ID<br />
+    <code>se</code>: Soft Timeout (seconds)<br />
+    <code>he</code>: Hard Timeout (seconds)<br />
+    <code>h</code>: Heartbeat (seconds)<br />
+    <code>a</code>: Flag for wrapping a tags around the phone number on mobile<br />
+    <code>m</code>: Main number<br />
+    <code>sgn</code>: Flag for if the SourceTrak number is a SourceGuard number<br />
+    <code>integrations</code>: List of associated integrations<br />
+</p>
+
+<hr />
+
+<h3>Log Page Visit</h3>
 <p>The log request is made via GET and is used to log an end-user's page request activity on one's web site. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
 <h4>GET Parameters</h4>
 <pre>
@@ -81,7 +143,10 @@
     <code>Status Code:200 OK</code>
 </pre>
 <p>A successfull page visit request responds with an empty 200.</p>
-<h2>Log Heartbeat</h2>
+
+<hr />
+
+<h3>Log Heartbeat</h3>
 <p>The heartbeat request is made via GET and is used to log if the end-user still has a page open in the browser. The heartbeat requests are made to the same end-point as logging page visits with the param of _stb=1. These requests are used to rank an inbound calls accuracty to be tracked back to an end-user's history. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
 <h4>GET Parameters</h4>
 <pre>
@@ -105,5 +170,6 @@
     <code>Status Code:200 OK</code>
 </pre>
 <p>A successfull heartbeat request responds with an empty 200.</p>
+
 </body>
 </html>
