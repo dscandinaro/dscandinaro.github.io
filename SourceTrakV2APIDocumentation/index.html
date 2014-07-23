@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SourceTrak Admin API</title>
+    <title>SourceTrak Integration API</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<h1>SourceTrak Admin API</h1>
+<h1>SourceTrak Integration API</h1>
 <p>The IBP SourceTrak API allows one to request dynamic tracking numbers, log page visits and heartbeats via a RESTful service.</p>
 <h2>Get Number</h2>
 <p>The default request is made via GET and is used to get a phone number to display on one's site.  All request parameters should be URL encoded. Requests are made to: <code>https://st1.ifbyphone.com/st/</code></p>
@@ -13,7 +13,7 @@
 <pre>
     <code>
         api=true
-        _stk=SOURCETRAK_KEY
+        _stk=PUBLIC_KEY
         dr=DOCUMENT_REFERER
         dl=DOCUMENT_LOCATION
         dt=DOCUMENT_TITLE
@@ -46,11 +46,11 @@
     <code>bid</code>: Browser ID to be associated with any request from that user's browser. This ID domain agnostic<br />
     <code>pid</code>: Property ID identifying the request as pertaining to this domain set browser ID combination<br />
     <code>stn</code>: SourceTrak number<br />
-    <code>ntr</code>: Replacement number<br />
+    <code>ntr</code>: Number to replace<br />
     <code>rc</code>: Replacement HTML Class<br />
     <code>rid</code>: Replacement HTML ID<br />
-    <code>se</code>: Soft Timeout (minutes)<br />
-    <code>he</code>: Hard Timeout (minutes)<br />
+    <code>se</code>: Soft Timeout (seconds)<br />
+    <code>he</code>: Hard Timeout (seconds)<br />
     <code>h</code>: Heartbeat (seconds)<br />
     <code>a</code>: Flag for wrapping a tags around the phone number on mobile<br />
     <code>m</code>: Main number<br />
@@ -58,13 +58,13 @@
     <code>integrations</code>: List of associated integrations<br />
 </p>
 <hr />
-<h2>Log page visit / heartbeat</h2>
-<p>The log request is made via GET and is used to log an end-user's activity on one's web site. These requests are used to rank an inbound calls accuracty to be tracked back to an end-user's history. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
+<h2>Log Page Visit</h2>
+<p>The log request is made via GET and is used to log an end-user's page request activity on one's web site. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
 <h4>GET Parameters</h4>
 <pre>
     <code>
         api=true
-        _stk=SOURCETRAK_KEY
+        _stk=PUBLIC_KEY
         dr=DOCUMENT_REFERER
         dl=DOCUMENT_LOCATION
         dt=DOCUMENT_TITLE
@@ -73,11 +73,33 @@
     </code>
 </pre>
 <h4>Example request</h4>
-<code>https://st2.ifbyphone.com/st/log?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156</code><br />
+<code>https://st2.ifbyphone.com/st/log?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156</code>
 <h4>Example Response</h4>
 <pre>
     <code>Status Code:200 OK</code>
 </pre>
-<p>A successfull log request responds with an empty 200.</p>
+<p>A successfull page visit request responds with an empty 200.</p>
+<h2>Log Heartbeat</h2>
+<p>The heartbeat request is made via GET and is used to log if the end-user still has a page open in the browser. The heartbeat requests are made to the same end-point as logging page visits with the param of _stb=1. These requests are used to rank an inbound calls accuracty to be tracked back to an end-user's history. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
+<h4>GET Parameters</h4>
+<pre>
+    <code>
+        api=true
+        _stk=PUBLIC_KEY
+        _stb=1
+        dr=DOCUMENT_REFERER
+        dl=DOCUMENT_LOCATION
+        dt=DOCUMENT_TITLE
+        bid=BROWSER_ID
+        pid=PROPERTY_ID
+    </code>
+</pre>
+<h4>Example request</h4>
+<code>https://st2.ifbyphone.com/st/log?api=true&_stk=6c9a4a044we846f80gj55c9cb7e6a72964e6da82d3&_stb=1&dr=http%3A%2F%2Fgoogle.com&dl=http%3A%2F%2Fwww.oursite.com%3Fst-t%3D50%20Off%20Campaign&dt=50%25%20Off%20Landing%20Page&bid=d56ad1a2-8dbf-98ab-1f12-4ed429e43e3d&pid=95acfe77-8bd6-bf42-b6a0-3abe1fcd9156</code>
+<h4>Example Response</h4>
+<pre>
+    <code>Status Code:200 OK</code>
+</pre>
+<p>A successfull heartbeat request responds with an empty 200.</p>
 </body>
 </html>
