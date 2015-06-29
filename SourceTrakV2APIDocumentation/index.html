@@ -120,6 +120,45 @@
 
 <hr />
 
+<h3>Multi-Location</h3>
+<p>The locations request is made via GET and is used to find potential replacement numbers for phone numbers existing on the page that may have been setup within the SourceTrak domain set for replacement.  This request depends on the initial number request already being run, and all parameters are required. Requests are made to: <code>https://st2.ifbyphone.com/st/locations</code></p>
+<p>GET Paramters:</p>
+<pre>
+    <code>
+        api=true
+        _stk=PUBLIC_KEY
+        bid=BROWSER_ID
+        pid=PROPERTY_ID
+        mln=ARRAY_OF_PHONE_NUMBERS
+    </code>
+</pre>
+<p>Example request:</p>
+<pre>
+    <code>http://portal.ifbyphone.local/st/locations?api=true&_stk=6c9a4a04484c46f8055c9cb7e6a72964e6da82d3&bid=d7fe9054-3edb-877a-1101-1b0e252b740a&pid=b0cc5712-74bf-3c6b-4c07-ad2adcd87a42&mln=%5B5555550001%2C%205555550002%5D</code>
+</pre>
+<p>Example Response:</p>
+<pre>
+    <code>
+        {
+          "mln": [
+            {
+              "ntr": "5555550001",
+              "stn": "2132120049",
+              "sgn": 0
+            },
+            {
+              "ntr": "5555550002",
+              "stn": "2132120006",
+              "sgn": 0
+            }
+          ],
+          "se": 600
+        }
+    </code>
+</pre>
+
+<hr />
+
 <h3>Log Page Visit</h3>
 <p>The log request is made via GET and is used to log an end-user's page request activity on one's web site. All request parameters should be URL encoded. Requests are made to: <code>https://st2.ifbyphone.com/st/log</code></p>
 <p>GET Parameters:</p>
